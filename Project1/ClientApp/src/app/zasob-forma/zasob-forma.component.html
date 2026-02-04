@@ -1,0 +1,77 @@
+﻿<h1>
+    <span *ngIf="edycja">
+        Edycja zasobu
+    </span>
+    <span *ngIf="!edycja">
+        Dodawanie zasobu
+    </span>
+</h1>
+
+<p *ngIf="!zasob"><em>Loading...</em></p>
+
+<div align="right">
+    <button class="btn btn-secondary" routerLink="/zasoby-lista">Powrót</button>
+</div>
+
+<form *ngIf="zasob" novalidate #form="ngForm" (ngSubmit)="zapiszZasob(form)" class="m-a-1">
+    <div class="form-group">
+        <label>Nazwa</label>
+        <input class="form-control" #nazwa="ngModel" name="nazwa"
+               [(ngModel)]="zasob.nazwa" style="width:50%" required />
+        <ul class="text-danger list-unstyled" *ngIf="nazwa.invalid && submitted">
+            <li *ngIf="nazwa.errors.required">
+                Proszę podać nazwę zasobu
+            </li>
+        </ul>
+        <label>Interwał w minutach</label>
+        <input class="form-control" type="number" #interwal="ngModel" name="interwal"
+               [(ngModel)]="zasob.interwal" style="width:50%" required />
+        <ul class="text-danger list-unstyled" *ngIf="interwal.invalid  && submitted">
+            <li *ngIf="interwal.errors.required">
+                Proszę podać interwał
+            </li>
+        </ul>
+        <label>Dostępność</label>
+        <div class="form-inline m-a-1" style="width: 50%">
+            <label style="padding: 10px">Od godz/min</label>
+            <input class="form-control" type="number" #godzod="ngModel" name="godzod" style="padding: 10px"
+                   [(ngModel)]="zasob.godz_od" required min="0" max="23" />
+            <input class="form-control" type="number" #minod="ngModel" name="minod"
+                   [(ngModel)]="zasob.min_od" required min="0" max="59" />
+            <ul class="text-danger list-unstyled" *ngIf="godzod.invalid  && submitted">
+                <li *ngIf="godzod.errors.required">
+                    Proszę podać godzinę od której zasób jest dostępny
+                </li>
+            </ul>
+            <ul class="text-danger list-unstyled" *ngIf="minod.invalid  && submitted">
+                <li *ngIf="minod.errors.required">
+                    Proszę podać minutę od której zasób jest dostępny
+                </li>
+            </ul>
+        </div>
+        <div class="form-inline m-a-1" style="width: 50%">
+            <label style="padding: 10px">Do godz/min</label>
+            <input class="form-control" type="number" #godzdo="ngModel" name="godzdo" style="padding: 10px"
+                   [(ngModel)]="zasob.godz_do" required min="0" max="23" />
+            <input class="form-control" type="number" #mindo="ngModel" name="mindo"
+                   [(ngModel)]="zasob.min_do" required min="0" max="59" />
+            <ul class="text-danger list-unstyled" *ngIf="godzdo.invalid  && submitted">
+                <li *ngIf="godzdo.errors.required">
+                    Proszę podać godzinę do której zasób jest dostępny
+                </li>
+            </ul>
+            <ul class="text-danger list-unstyled" *ngIf="mindo.invalid  && submitted">
+                <li *ngIf="mindo.errors.required">
+                    Proszę podać minutę do której zasób jest dostępny
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-danger list-unstyled" *ngIf="komunikat && submitted">
+        {{komunikat}}
+    </div>
+    <div class="text-xs-center">
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+        <button *ngIf="edycja" (click)="usunZasob()" class="btn btn-secondary">Usuń</button>
+    </div>
+</form>

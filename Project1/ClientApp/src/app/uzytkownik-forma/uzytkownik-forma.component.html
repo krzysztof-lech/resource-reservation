@@ -1,0 +1,38 @@
+﻿<h1>
+    <span *ngIf="edycja">
+        Edycja użytkownika
+    </span>
+    <span *ngIf="!edycja">
+        Dodawanie użytkownika
+    </span>
+</h1>
+
+<p *ngIf="!uzytkownik"><em>Loading...</em></p>
+
+<div align="right">
+    <button class="btn btn-secondary" routerLink="/uzytkownicy-lista">Powrót</button>
+</div>
+
+<form *ngIf="uzytkownik" (ngSubmit)="zapiszUzytkownik(form)" class="m-a-1">
+    <div class="form-group">
+        <label>Imię</label>
+        <input class="form-control" #name="ngModel" name="imie"
+               [(ngModel)]="uzytkownik.imie" required style="width:50%" />
+        <label>Nazwisko</label>
+        <input class="form-control" #name="ngModel" name="nazwisko"
+               [(ngModel)]="uzytkownik.nazwisko" required style="width:50%" />
+        <label>Login</label>
+        <input class="form-control" #name="ngModel" name="login"
+               [(ngModel)]="uzytkownik.login" required style="width:50%" />
+        <label>Hasło</label>
+        <input class="form-control" #name="ngModel" name="haslo" type="password"
+               [(ngModel)]="uzytkownik.haslo" required style="width:50%" />
+        <label>Administrator</label>
+        <input class="form-control" #name="ngModel" name="admin" type="checkbox"
+               [(ngModel)]="admin" style="width:50%" />
+    </div>
+    <div class="text-xs-center">
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+        <button *ngIf="edycja" (click)="usunUzytkownik()" class="btn btn-secondary">Usuń</button>
+    </div>
+</form>

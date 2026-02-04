@@ -1,0 +1,47 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" [routerLink]="['/']">Rezerwacja</a>
+            <div *ngIf="czy_admin()" style="color:red">
+               Administrator
+            </div>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    aria-label="Toggle navigation"
+                    [attr.aria-expanded]="isExpanded"
+                    (click)="toggle()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+                 [ngClass]="{ show: isExpanded }">
+                <ul class="navbar-nav flex-grow">
+
+                    <li *ngIf="czy_admin()" class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/zasoby-lista']">Zasoby</a>
+                    </li>
+                    <li *ngIf="zalogowano()" class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/rezerwacja-lista']">Rezerwacja</a>
+                    </li>
+                    <li *ngIf="czy_admin()" class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/uzytkownicy-lista']">Uzytkownicy</a>
+                    </li>
+                    <li *ngIf="!zalogowano()" class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/rejestracja-forma']">Rejestracja</a>
+                    </li>
+                    <li *ngIf="czy_admin()" class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/kategorie-lista']">Kategorie</a>
+                    </li>
+                    <li *ngIf="zalogowano()" class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/']" (click)="wyloguj()">Wyloguj</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+

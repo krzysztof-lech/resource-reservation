@@ -1,0 +1,23 @@
+﻿<h1 id="tableLabel">Kategorie</h1>
+
+<div align="right">
+    <button class="btn btn-secondary" routerLink="/kategoria-forma/add">Nowa kategoria</button>
+</div>
+
+<p>Lista dostępnych kategorii</p>
+
+<p *ngIf="!kategorieLista"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="kategorieLista">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let kategoria of kategorieLista" (click)="pokazKategorie(kategoria)">
+            <td>{{ kategoria.nazwa }}</td>
+
+        </tr>
+    </tbody>
+</table>

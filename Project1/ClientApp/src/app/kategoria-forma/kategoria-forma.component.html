@@ -1,0 +1,26 @@
+﻿<h1>
+    <span *ngIf="edycja">
+        Edycja kategorii
+    </span>
+    <span *ngIf="!edycja">
+        Dodawanie kategorii
+    </span>
+</h1>
+
+<p *ngIf="!kategoria"><em>Loading...</em></p>
+
+<div align="right">
+    <button class="btn btn-secondary" routerLink="/kategorie-lista">Powrót</button>
+</div>
+
+<form *ngIf="kategoria" (ngSubmit)="zapiszKategorie(form)" class="m-a-1">
+    <div class="form-group">
+        <label>Nazwa</label>
+        <input class="form-control" #name="ngModel" name="nazwa"
+               [(ngModel)]="kategoria.nazwa" required />
+    </div>
+    <div class="text-xs-center">
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+        <button *ngIf="edycja" (click)="usunKategorie()" class="btn btn-secondary">Usuń</button>
+    </div>
+</form>

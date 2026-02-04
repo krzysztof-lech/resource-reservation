@@ -1,0 +1,32 @@
+﻿<h1 *ngIf="zasob">{{zasob.nazwa}}</h1>
+
+<p *ngIf="!zasob"><em>Loading...</em></p>
+
+<div align="right">
+    <button class="btn btn-secondary" (click)="poprzedniTydzien()" style="background-color:DodgerBlue;">Poprzedni Tydzień</button>
+    <button class="btn btn-secondary" (click)="aktualnyTydzien()">Aktualny Tydzień</button>
+    <button class="btn btn-secondary" (click)="nastepnyTydzien()" style="background-color:DodgerBlue;">Następny Tydzień</button>
+    <button class="btn btn-secondary" routerLink="/rezerwacja-lista">Powrót</button>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="terminy">
+    <thead>
+        <tr>
+            <th>Termin</th>
+            <th *ngFor="let dzien of dni;let dn=index;">
+                {{dni_tyg[dn]}}<br/>{{ dzien.dz }}-{{dzien.mies}}
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let termin of terminy;let tr_index=index;">
+            <td>{{ termin.godz }}:{{termin.min < 10? "0": ""}}{{termin.min}}</td>
+            <td *ngFor="let dzien of dni;let dz_index=index;">
+                <button *ngIf="czy_mozna_rezerwowac(dzien,termin, dz_index, tr_index)" class="btn btn-secondary" (click)="rezerwujZasob(dzien,termin, dz_index, tr_index)">Rezerwuj</button>
+                <button *ngIf="czy_mozna_anulowac(dzien,termin, dz_index, tr_index)" class="btn btn-secondary" (click)="rezerwujZasob(dzien,termin, dz_index, tr_index)" style="background-color:DodgerBlue;">{{rezTablica[dz_index].rezTermin[tr_index].uzytkownik}}</button>
+                <span *ngIf="!czy_mozna_rezerwowac(dzien,termin, dz_index, tr_index)&&!czy_mozna_anulowac(dzien,termin, dz_index, tr_index)">{{rezTablica[dz_index].rezTermin[tr_index].uzytkownik}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

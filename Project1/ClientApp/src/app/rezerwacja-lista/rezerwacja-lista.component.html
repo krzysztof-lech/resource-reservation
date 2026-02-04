@@ -1,0 +1,19 @@
+﻿<h1 id="tableLabel">Rezerwacja Zasobów</h1>
+
+<p>Lista dostępnych zasobów</p>
+
+<p *ngIf="!zasobyLista"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="zasobyLista">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let zasob of zasobyLista" (click)="pokazZasob(zasob)">
+            <td>{{ zasob.nazwa }}</td>
+
+        </tr>
+    </tbody>
+</table>

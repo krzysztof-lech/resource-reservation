@@ -1,0 +1,29 @@
+﻿<h1 id="tableLabel">Użytkownicy</h1>
+
+<div align="right">
+    <button class="btn btn-secondary" routerLink="/uzytkownik-forma/add">Nowy użytkownik</button>
+</div>
+
+
+<p>Lista użytkowników</p>
+
+<p *ngIf="!uzytkownicyLista"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="uzytkownicyLista">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Login</th>
+            <th>Admistrator</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let uzytkownik of uzytkownicyLista" (click)="pokazUzytkownik(uzytkownik)">
+            <td>{{ uzytkownik.imie }}</td>
+            <td>{{ uzytkownik.nazwisko }}</td>
+            <td>{{ uzytkownik.login }}</td>
+            <td>{{ uzytkownik.admin?"Tak":"" }}</td>
+        </tr>
+    </tbody>
+</table>

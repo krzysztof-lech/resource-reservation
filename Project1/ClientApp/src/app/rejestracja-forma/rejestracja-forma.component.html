@@ -1,0 +1,64 @@
+﻿<style>
+    input.ng_dirty.ng_invalid {border: 2px solid #ff0000}
+    input.ng_dirty.ng_valid {border: 2px solid #6bc502 }
+</style>
+<h1>Rejestracja użytkownika</h1>
+
+
+<div align="right">
+    <button class="btn btn-secondary" routerLink="/login-forma">Zaloguj</button>
+</div>
+
+<form novalidate *ngIf="uzytkownik" #form="ngForm" (ngSubmit)="zapiszUzytkownika(form)" class="m-a-1">
+
+
+    <div class="form-group">
+        <label>Imię</label>
+        <input type="text" class="form-control" #imie="ngModel" name="imie"
+               [(ngModel)]="uzytkownik.imie" required maxlength="50" style="width:50%" />
+        <ul class="text-danger list-unstyled" *ngIf="imie.invalid && submitted">
+            <li *ngIf="imie.errors.required">
+                Proszę podać imie
+            </li>
+        </ul>
+        <label>Nazwisko</label>
+        <input class="form-control" #nazwisko="ngModel" name="nazwisko"
+               [(ngModel)]="uzytkownik.nazwisko" required maxlength="50" style="width:50%" />
+        <ul class="text-danger list-unstyled" *ngIf="nazwisko.invalid && submitted">
+            <li *ngIf="nazwisko.errors.required">
+                Proszę podać nazwisko
+            </li>
+        </ul>
+        <label>Login</label>
+        <input class="form-control" #login="ngModel" name="login"
+               [(ngModel)]="uzytkownik.login" required maxlength="50" style="width:50%" />
+        <ul class="text-danger list-unstyled" *ngIf="login.invalid && submitted">
+            <li *ngIf="login.errors.required">
+                Proszę podać login
+            </li>
+        </ul>
+        <label>Hasło</label>
+        <input class="form-control" #haslo="ngModel" name="haslo" type="password"
+               [(ngModel)]="uzytkownik.haslo" required maxlength="50" style="width:50%" />
+        <ul class="text-danger list-unstyled" *ngIf="haslo.invalid && submitted">
+            <li *ngIf="haslo.errors.required">
+                Proszę podać hasło
+            </li>
+        </ul>
+        <label>Powtórz Hasło</label>
+        <input class="form-control" #powtorz="ngModel" name="powtorz" type="password"
+               [(ngModel)]="powtorz_haslo" required maxlength="50" style="width:50%" />
+        <ul class="text-danger list-unstyled" *ngIf="powtorz.invalid && submitted">
+            <li *ngIf="powtorz.errors.required">
+                Proszę powtórzyć hasło
+            </li>
+        </ul>
+
+    </div>
+    <div class="text-danger list-unstyled" *ngIf="komunikat && submitted">
+                {{komunikat}}
+    </div>
+    <div class="text-xs-center">
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+    </div>
+</form>
