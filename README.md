@@ -43,46 +43,8 @@ The project demonstrates a complete CRUD system with a simple domain model and S
  ├── ClientApp/          # Angular application
  ├── Program.cs
  ├── Startup.cs
- └── Project.csproj
+ └── Zasoby.csproj
 ```
-
-## Running the Application
-
-### 1. Install prerequisites
-
-- .NET 6 SDK
-- Node.js  + npm
-- SQL Server
-
-### 2. Install Angular dependencies
-```bash
-cd ClientApp
-npm install
-```
-### 3. Run the backend
-
-From the project root:
-```bash
-dotnet run
-```
-
-### 4. Open the app
-
-```bash
-https://localhost:5001
-```
-
-## Database
-
-Connection string is located in appsettings.json:
-
-```json
-"ConnectionStrings": {
-    "ZasobyConnection": "Server=(localdb)\\MSSQLLocalDB;Database=Zasoby;MultipleActiveResultSets=true"
-  }
-```
-Adjust it to match your SQL Server instance.
-
 ## API Examples
 
 ### Resources
